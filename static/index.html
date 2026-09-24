@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070b12">
+  <meta name="description" content="AgentMarket — machine-purchasable financial intelligence for autonomous agents.">
+  <title>AgentMarket — Buy Capabilities</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="noise"></div>
+  <header class="topbar shell">
+    <a class="brand" href="/"><span class="brand-mark"><span></span><span></span><span></span></span><span>AgentMarket</span></a>
+    <div class="topbar-right"><span class="status-dot" id="serviceStatusDot"></span><span id="serviceStatus">checking service</span><a href="#developer" class="text-link">Developer API</a></div>
+  </header>
+  <main>
+    <section class="hero shell">
+      <div class="eyebrow"><span>OKX DEV DAY 2026</span><i></i><span>BUILD A COMPANY</span></div>
+      <h1>Agents need capabilities.<br><em>Let them buy them.</em></h1>
+      <p class="hero-copy">AgentMarket turns specialist financial intelligence into a machine-purchasable capability — discovered through OKX.AI, paid with x402, settled on X Layer, and returned with evidence.</p>
+      <div class="hero-actions"><a href="#live" class="button button-primary">Explore capability</a><button id="challengeButton" class="button button-ghost">Test 402 flow</button></div>
+      <div class="hero-proof"><div><b id="networkLabel">X Layer</b><span>settlement</span></div><div><b>x402</b><span>pay-per-call</span></div><div><b>A2MCP</b><span>agent discovery</span></div><div><b>OKX</b><span>live source</span></div></div>
+    </section>
+
+    <section id="live" class="shell section">
+      <div class="section-heading"><div><span class="section-kicker">LIVE CAPABILITY</span><h2>Financial Intelligence Snapshot</h2></div><div class="price-pill"><strong id="servicePrice">$0.01</strong><span>/ call</span></div></div>
+      <div class="product-grid">
+        <article class="asset-card panel">
+          <div class="asset-head"><div class="asset-identity"><div class="asset-icon">A</div><div><div class="asset-name">xAAPL</div><div class="asset-meta">XAAPL-USDT · tokenized Apple exposure</div></div></div><span class="live-chip"><i></i> LIVE</span></div>
+          <div class="price-row"><div><span class="muted-label">OKX market price</span><div class="asset-price" id="livePrice">—</div></div><div class="change-box"><span>24h</span><strong id="liveReturn">—</strong></div></div>
+          <div class="mini-stats"><div><span>Bid</span><b id="liveBid">—</b></div><div><span>Ask</span><b id="liveAsk">—</b></div><div><span>24h Volume</span><b id="liveVolume">—</b></div></div>
+          <div class="source-strip"><span>Source</span><strong>OKX Public Market API</strong><span class="source-time" id="liveTimestamp">waiting for data</span></div>
+        </article>
+        <article class="capability-card panel"><div class="card-label">WHAT AN AGENT BUYS</div><h3>One request.<br><span>One verified answer.</span></h3><p>Instead of rebuilding market-data ingestion and analytics, an autonomous agent invokes one standardized capability.</p><div class="metric-list"><div><span>01</span><b>Live market state</b><small>price · spread · volume</small></div><div><span>02</span><b>Deterministic analytics</b><small>24h · 5d · 20d · volatility</small></div><div><span>03</span><b>Evidence object</b><small>source · timestamp · methodology</small></div><div><span>04</span><b>Machine receipt</b><small>request ID · result hash</small></div></div></article>
+      </div>
+    </section>
+
+    <section class="shell section"><div class="flow panel"><div class="flow-title"><div><span class="section-kicker">AGENT PAYMENT FLOW</span><h2>402 → pay → intelligence</h2></div><span class="flow-badge">X LAYER</span></div><div class="flow-line"><div class="flow-step"><span>01</span><b>Discover</b><small>OKX.AI / A2MCP</small></div><div class="arrow">→</div><div class="flow-step"><span>02</span><b>Request</b><small>financial_snapshot</small></div><div class="arrow">→</div><div class="flow-step active"><span>03</span><b>402</b><small>payment challenge</small></div><div class="arrow">→</div><div class="flow-step"><span>04</span><b>Pay</b><small>Agentic Wallet</small></div><div class="arrow">→</div><div class="flow-step"><span>05</span><b>Verify</b><small>X Layer</small></div><div class="arrow">→</div><div class="flow-step"><span>06</span><b>Return</b><small>evidence-backed result</small></div></div><div class="flow-console"><div class="console-head"><span>REQUEST TRACE</span><span id="traceStatus">READY</span></div><pre id="flowOutput">Click “Test 402 flow” to make a real unpaid request to the configured service.</pre></div></div></section>
+
+    <section id="developer" class="shell section"><div class="developer-grid"><article class="panel developer-card"><span class="section-kicker">DEVELOPER SURFACE</span><h2>Built for machines first.</h2><p>Human-readable dashboard on top. Programmatic capability underneath.</p><div class="endpoint"><span class="method">POST</span><code id="endpointText">/v1/intelligence/financial-snapshot</code><button id="copyEndpoint">copy</button></div><div class="request-block"><div class="block-label">REQUEST</div><pre>{
+  "asset": "xAAPL",
+  "horizon": "24h",
+  "freshness_required_seconds": 60
+}</pre></div><div class="developer-note"><div class="note-icon">✓</div><div><b>No fake numbers.</b><span>Live values originate from OKX; analytics are deterministic calculations.</span></div></div></article>
+      <article class="panel receipt-card"><span class="section-kicker">CAPABILITY RECEIPT</span><h2>Proof that a capability was purchased.</h2><p>After a successful paid request, the payment response and result hash can be joined into a compact machine-auditable receipt.</p><div class="receipt"><div class="receipt-row"><span>Service</span><b>financial_snapshot</b></div><div class="receipt-row"><span>Asset</span><b>xAAPL</b></div><div class="receipt-row"><span>Price</span><b id="receiptPrice">$0.01</b></div><div class="receipt-row"><span>Network</span><b id="receiptNetwork">X Layer</b></div><div class="receipt-row"><span>Request</span><b id="receiptRequest">waiting</b></div><div class="receipt-row"><span>Result hash</span><b id="receiptHash">generated after result</b></div><div class="receipt-row receipt-status"><span>Status</span><b>VERIFIED AFTER PAYMENT</b></div></div></article>
+    </div></section>
+
+    <section class="shell section final-section"><div class="final-card"><div><span class="section-kicker">THE THESIS</span><h2>AgentMarket is the capability layer between AI agents and specialist services.</h2></div><div class="thesis-line"><span>Discover</span><i>→</i><span>Purchase</span><i>→</i><span>Verify</span><i>→</i><span>Use</span></div></div></section>
+  </main>
+  <footer class="shell footer"><span>AgentMarket · OKX Dev Day 2026</span><span>Financial intelligence · x402 · X Layer · A2MCP</span></footer>
+  <script src="/app.js" defer></script>
+</body>
+</html>
