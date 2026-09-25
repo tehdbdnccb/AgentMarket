@@ -1,12 +1,19 @@
 const $ = (id) => document.getElementById(id);
 
-// Build API base URL - use the backend public domain if available, fallback to relative paths
-const API_BASE = window.location.hostname.includes('frontend') 
-  ? 'https://agentmarket-production.up.railway.app'
-  : '';
+// Build API base URL - detect if on frontend domain and route to backend
+const API_BASE = (() => {
+  const hostname = window.location.hostname;
+  // If on frontend domain, use the backend's public domain
+  if (hostname.includes('frontend')) {
+    return 'https://agentmarket-production-4e6f.up.railway.app';
+  }
+  // Otherwise use relative paths (for same-domain requests)
+  return '';
+})();
 
 async function requestJSON(url, options = {}) {
   const fullUrl = API_BASE + url;
+  console.log('Request:', fullUrl, options);
   const response = await fetch(fullUrl, options);
   const text = await response.text();
   let body = {};
@@ -40,7 +47,8 @@ async function loadService() {
     $("receiptPrice").textContent = service.price;
     $("networkLabel").textContent = service.network_label;
     $("receiptNetwork").textContent = service.network_label;
-  } catch {
+  } catch (e) {
+    console.error('loadService error:', e);
     $("serviceStatus").textContent = "service unavailable";
   }
 }
@@ -55,7 +63,8 @@ async function loadMarket() {
     $("liveVolume").textContent = fmt(body.volume_24h, 0);
     $("liveReturn").textContent = pct(body.return_24h);
     $("liveTimestamp").textContent = `OKX · ${time(body.timestamp_ms)}`;
-  } catch {
+  } catch (e) {
+    console.error('loadMarket error:', e);
     $("livePrice").textContent = "—";
     $("liveTimestamp").textContent = "live source unavailable";
   }
@@ -88,7 +97,8 @@ async function test402() {
     }
     $("traceStatus").textContent = `HTTP ${response.status}`;
     $("flowOutput").textContent = JSON.stringify(body, null, 2);
-  } catch {
+  } catch (e) {
+    console.error('test402 error:', e);
     $("traceStatus").textContent = "ERROR";
     $("flowOutput").textContent = "Endpoint unreachable. Configure the service and retry.";
   }
