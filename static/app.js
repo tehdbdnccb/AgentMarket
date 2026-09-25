@@ -1,7 +1,13 @@
 const $ = (id) => document.getElementById(id);
 
+// Build API base URL - use the backend public domain if available, fallback to relative paths
+const API_BASE = window.location.hostname.includes('frontend') 
+  ? 'https://agentmarket-production.up.railway.app'
+  : '';
+
 async function requestJSON(url, options = {}) {
-  const response = await fetch(url, options);
+  const fullUrl = API_BASE + url;
+  const response = await fetch(fullUrl, options);
   const text = await response.text();
   let body = {};
   try { body = text ? JSON.parse(text) : {}; } catch { body = { raw: text }; }
@@ -89,7 +95,7 @@ async function test402() {
 }
 
 async function copyEndpoint() {
-  await navigator.clipboard.writeText(`${window.location.origin}/v1/intelligence/financial-snapshot`);
+  await navigator.clipboard.writeText(`${API_BASE}/v1/intelligence/financial-snapshot`);
   $("copyEndpoint").textContent = "copied";
   setTimeout(() => $("copyEndpoint").textContent = "copy", 1400);
 }
@@ -98,3 +104,4 @@ $("challengeButton").addEventListener("click", test402);
 $("copyEndpoint").addEventListener("click", copyEndpoint);
 
 Promise.all([loadService(), loadMarket()]);
+
